@@ -8,7 +8,7 @@ interface SidebarButtonProps {
 export default function SidebarButton({children, onClick}: SidebarButtonProps) {
   return (
     <>
-      <button className="bg-white/30 rounded-xl cursor-pointer p-3 mb-5">{children}</button>
+      <button className="bg-foreground/30 text-foreground rounded-xl cursor-pointer p-3 mb-5 flex flex-row gap-3 w-full justify-center">{children}</button>
     </>
   );
 }
