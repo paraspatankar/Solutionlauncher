@@ -7,11 +7,14 @@ import { Eye, X, Database, Cpu, ServerCog } from "lucide-react";
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const steps = { frontend: true, backend: false, database: false, generation: false };
+  const steps = {
+    frontend: true,
+    backend: false,
+    database: false,
+    generation: false,
+  };
 
-  const stopCreation = () => (
-    setSearchTerm("")
-  )
+  const stopCreation = () => setSearchTerm("");
 
   return (
     <>
@@ -36,25 +39,24 @@ export default function Home() {
                 <Eye />
                 <span>Frontend</span>
               </div>
-              <hr className="bg-primary py-[2] px-10 rounded-full" />
+              <hr className="hidden sm:block bg-primary h-[2px] w-8 md:w-16 border-none" />
 
               <div className="flex flex-col justify-center items-center">
                 <ServerCog />
                 <span>Backend</span>
               </div>
-              <hr className="bg-primary py-[2] px-10 rounded-full" />
+              <hr className="hidden sm:block bg-primary h-[2px] w-8 md:w-16 border-none" />
 
               <div className="flex flex-col justify-center items-center">
                 <Database />
                 <span>Database</span>
               </div>
-              <hr className="bg-primary py-[2] px-10 rounded-full" />
+              <hr className="hidden sm:block bg-primary h-[2px] w-8 md:w-16 border-none" />
 
               <div className="flex flex-col justify-center items-center">
                 <Cpu />
                 <span>Generation</span>
               </div>
-
             </div>
             <div className="flex flex-col gap-2">
               <h3 className="font-bold ">Search technologies</h3>
@@ -66,8 +68,9 @@ export default function Home() {
                   className="rounded-xl"
                 ></Input>
                 <button
-                  className={`p-1 bg-[red]/30 border-1 border-[red] rounded-xl hover:bg-red-100 ${searchTerm.length !== 0 ? "block" : "hidden"
-                    }`}
+                  className={`p-1 bg-[red]/30 border-1 border-[red] rounded-xl hover:bg-red-100 ${
+                    searchTerm.length !== 0 ? "block" : "hidden"
+                  }`}
                   onClick={stopCreation}
                 >
                   <X className="text-[red]" />
@@ -76,7 +79,7 @@ export default function Home() {
             </div>
           </div>
         </section>
-      </div >
+      </div>
     </>
   );
 }
