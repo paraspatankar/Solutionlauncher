@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import {
   DropdownMenu,
@@ -9,6 +9,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Sun, Moon } from "lucide-react";
 import { useTheme } from "next-themes";
+import ThemeSwitcher from "@/components/theme-switcher-02";
 
 export default function Settings() {
   const { setTheme } = useTheme();
@@ -16,30 +17,16 @@ export default function Settings() {
   return (
     <>
       <div className="w-screen">
-        <h1 className="flex justify-center w-full font-bold text-4xl">
+        <h1 className="text-primary flex justify-center w-full font-bold text-4xl">
           Settings
         </h1>
       </div>
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="outline" size="icon">
-            <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-            <span className="sr-only">Toggle theme</span>
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
-          <DropdownMenuItem onClick={() => setTheme("light")}>
-            Light
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("dark")}>
-            Dark
-          </DropdownMenuItem>
-          <DropdownMenuItem onClick={() => setTheme("system")}>
-            System
-          </DropdownMenuItem>
-        </DropdownMenuContent>
-      </DropdownMenu>
+      <div className="border-1 my-5 mx-8">
+        <section>
+          <h2 className="font-bold text-2xl">Color theme</h2>
+          <ThemeSwitcher></ThemeSwitcher>
+        </section>
+      </div>
     </>
   );
 }
