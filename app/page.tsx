@@ -99,16 +99,19 @@ export default function Home() {
                     <X className="text-[red]" />
                   </button>
                 </div>
-                <section>
-                  {frontendTechnologies.map(technology => (
-                    <div key={technology.name} className="flex flex-row items-center gap-4 p-4 border rounded-xl hover:bg-gray-100 cursor-pointer">
-                      <img src={technology.logoUrl} alt={`${technology.name} logo`} className="w-10 h-10" />
-                      <div>
-                        <h4 className="font-bold">{technology.name}</h4>
-                        <p className="text-sm text-gray-500">{technology.description}</p>
+                {/*-- Technology Selection --*/}
+                <section className={`${steps === 0 ? "block" : "hidden"}`}>
+                  <div className="flex flex-row gap-3">
+                    {frontendTechnologies.map(technology => (
+                      <div key={technology.name} className="flex flex-col justify-center items-center gap-4 p-4 border rounded-xl hover:bg-gray-100 cursor-pointer">
+                        <img src={technology.logoUrl} alt={`${technology.name} logo`} className="w-10 h-10" />
+                        <div>
+                          <h4 className="font-bold">{technology.name}</h4>
+                          <p className="text-sm text-gray-500">{technology.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </section>
                 <div className="flex flex-row justify-between">
                   <Button
