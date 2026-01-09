@@ -30,7 +30,7 @@ export default function Home() {
         <section className="my-5 mx-[300] border-3 rounded-xl p-10">
           <div className="flex flex-col gap-10">
             <div className="flex flex-row justify-center items-center gap-3">
-              <div className="flex flex-col justify-center items-center">
+              <div className={`flex flex-col justify-center items-center ${steps > 0 ? "text-primary" : "text-black"}`}>
                 <Eye />
                 <span>Frontend</span>
               </div>
@@ -38,7 +38,7 @@ export default function Home() {
                 }`}
               />
 
-              <div className="flex flex-col justify-center items-center">
+              <div className={`flex flex-col justify-center items-center ${steps >= 2 ? "text-primary" : "text-black"}`}>
                 <ServerCog />
                 <span>Backend</span>
               </div>
@@ -46,7 +46,7 @@ export default function Home() {
                 }`}
               />
 
-              <div className="flex flex-col justify-center items-center">
+              <div className={`flex flex-col justify-center items-center ${steps >= 3 ? "text-primary" : "text-black"}`}>
                 <Database />
                 <span>Database</span>
               </div>
@@ -54,7 +54,7 @@ export default function Home() {
                 }`}
               />
 
-              <div className="flex flex-col justify-center items-center">
+              <div className={`flex flex-col justify-center items-center ${steps >= 5 ? "text-primary" : "text-black"}`}>
                 <Cpu />
                 <span>Generation</span>
               </div>
@@ -86,11 +86,11 @@ export default function Home() {
                     back
                   </Button>
                   <Button
-                    disabled={steps >= 3}
+                    disabled={steps >= 5}
                     className="flex self-end bg-primary text-white rounded-xl px-5 py-2 cursor-pointer"
                     onClick={() => setSteps(steps + 1)}
                   >
-                    {steps <= 1 ? "next" : "generate"}
+                    {steps <= 3 ? "next" : "generate"}
                   </Button>
                 </div>
               </div>
