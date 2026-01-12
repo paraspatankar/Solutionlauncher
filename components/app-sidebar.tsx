@@ -23,7 +23,7 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent className="mx-2 my-10">
         <SidebarGroup>
-          <Link href="/latest-configurations">
+          <Link href={"/latest"}>
             <SidebarButton>
               <Clock />
               <span>Latest Configurations</span>
