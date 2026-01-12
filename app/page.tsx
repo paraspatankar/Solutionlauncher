@@ -19,7 +19,7 @@ export default function Home() {
     useState<string[]>([]);
   const [configuration, setConfiguration] = useState<Technology[]>([]);
 
-  const selectedTechnologies = [selectedFrontendTechnologys, selectedBackendTechnologies];
+  const selectedTechnologies = [selectedFrontendTechnologys, selectedBackendTechnologies, selectedDatabaseTechnologies];
   type Technology = {
     name: string;
     category: "frontend" | "backend" | "database";
@@ -145,11 +145,11 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex flex-col gap-4">
-                <div className={`flex flex-col gap-2 ${steps >= 3 ? "hidden" : "block"}`}>
-                  <h3 className="font-bold ">Search technologies</h3>
+                <div className={`${steps >= 3 ? "hidden" : "block"}`}>
+                  <h3 className="font-bold ">{steps == 0 ? "Search frontend technologies" : steps == 1 ? "Search backend technologies" : steps == 2 ? "Search database technologies" : ""}</h3>
                   <div className="flex flex-row gap-2">
                     <Input
-                      placeholder="search for a frontend technology..."
+                      placeholder={steps == 0 ? "search for a frontend technology..." : steps == 1 ? "search for a backend technology..." : "search for a database technology..."}
                       value={searchTerm}
                       onChange={(e) => (
                         setSearchTerm(e.target.value),
@@ -213,6 +213,12 @@ export default function Home() {
                   </div>
                 </section>
                 <section className={`${steps === 3 ? "block" : "hidden"}`}>
+                  <div className="flex flex-col gap-2">
+                    <h3 className="font-bold ">Selected Technologies:</h3>
+                    <h2>{selectedTechnologies[0].map(technology => technology)}</h2>
+                    <h2>{selectedTechnologies[1].map(technology => technology)}</h2>
+                    <h2>{selectedTechnologies[2].map(technology => technology)}</h2>
+                  </div>
                 </section>
                 <div className="flex flex-row justify-between">
                   <Button
