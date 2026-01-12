@@ -1,3 +1,5 @@
+"use client"
+
 import {
   Sidebar,
   SidebarContent,
@@ -8,17 +10,21 @@ import {
 import { BadgePlus, Clock, Settings } from "lucide-react";
 import Link from "next/link";
 import SidebarButton from "./sidebar-btn";
+import { useSidebar } from "@/components/ui/sidebar";
 
 export function AppSidebar() {
+  const { toggleSidebar } = useSidebar()
   return (
     <Sidebar variant="sidebar">
       <SidebarHeader className="mx-2">
         <Link
           href="/"
-          className="bg-primary flex flex-row justify-center items-center gap-3 cursor-pointer rounded-xl py-5 mt-3 text-white"
+          className="bg-primary flex flex-row justify-center items-center cursor-pointer rounded-xl mt-3 text-white"
         >
-          <BadgePlus />
-          <span>New Project</span>
+          <button onClick={() => toggleSidebar()} className="flex flex-row gap-3 py-7 px-10 cursor-pointer">
+            <BadgePlus />
+            <span>New Project</span>
+          </button>
         </Link>
       </SidebarHeader>
       <SidebarContent className="mx-2 my-10">
