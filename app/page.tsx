@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Eye, X, Database, Cpu, ServerCog } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Techbox from "@/components/techbox";
+import { Spinner } from "@/components/ui/spinner";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -229,6 +230,9 @@ export default function Home() {
                       <p className="text-gray-500">No results found</p>
                     )}
                   </div>
+                </section>
+                <section className={`${steps === 4 ? "block" : "hidden"} flex justify-center`}>
+                  <Spinner className="w-15 h-15 text-primary"/>
                 </section>
                 <section className={`${steps === 3 ? "block" : "hidden"}`}>
                   <div className="flex flex-col gap-2">

@@ -8,7 +8,7 @@ export default function Techbox({ name, logoUrl, onSelect, selected }: TechboxPr
 
     return (
         <div
-            className={`flex flex-col justify-center items-center gap-4 w-30 h-30 border rounded-xl cursor-pointer ${selected ? "bg-primary border-primary text-background" : ""}`}
+            className={`flex flex-col justify-center items-center gap-4 w-30 h-30 border-2 rounded-xl cursor-pointer ${selected ? "bg-primary border-primary text-background" : ""}`}
             onClick={onSelect}
         >
             <img src={logoUrl} alt={`${name} logo`} className="w-10 h-10 bg-background rounded-full p-1" />
