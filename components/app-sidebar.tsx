@@ -5,7 +5,7 @@ import {
   SidebarGroup,
   SidebarHeader,
 } from "@/components/ui/sidebar";
-import { BadgePlus, Settings } from "lucide-react";
+import { BadgePlus, Clock, Settings } from "lucide-react";
 import Link from "next/link";
 import SidebarButton from "./sidebar-btn";
 
@@ -23,7 +23,12 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent className="mx-2 my-10">
         <SidebarGroup>
-          <SidebarButton>Latest Configurations</SidebarButton>
+          <Link href="/latest-configurations">
+            <SidebarButton>
+              <Clock />
+              <span>Latest Configurations</span>
+            </SidebarButton>
+          </Link>
         </SidebarGroup>
         <SidebarGroup />
       </SidebarContent>
