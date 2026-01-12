@@ -35,7 +35,7 @@ export default function Home() {
     {
       name: "Vue.js",
       category: "frontend",
-      logoUrl: "/logos/vue.png",
+      logoUrl: "/tech-logos/vue.svg",
     },
   ];
 
@@ -44,7 +44,7 @@ export default function Home() {
     {
       name: "Node.js",
       category: "backend",
-      logoUrl: "/tech-logos/nodejs.svg",
+      logoUrl: "/tech-logos/node.svg",
     },
   ];
 
