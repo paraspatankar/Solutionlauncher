@@ -17,6 +17,7 @@ export default function Home() {
     useState<string[]>([]);
   const [configuration, setConfiguration] = useState<Technology[]>([]);
 
+  const selectedTechnologies = [selectedFrontendTechnologys, selectedBackendTechnologies];
   type Technology = {
     name: string;
     category: "frontend" | "backend" | "database";
@@ -36,6 +37,7 @@ export default function Home() {
     },
   ];
 
+
   const backendTechnologies: Technology[] = [
     {
       name: "Node.js",
@@ -45,18 +47,20 @@ export default function Home() {
   ];
 
   function handleSelect(technology: string) {
-    if (selectedFrontendTechnologys.includes(technology)) {
-      setSelectedFrontendTechnologys(
-        selectedFrontendTechnologys.filter((current) => current !== technology)
-      );
-    } else {
-      setSelectedFrontendTechnologys([
-        ...selectedFrontendTechnologys,
-        technology,
-      ]);
+    if (steps === 0) {
+      if (selectedFrontendTechnologys.includes(technology)) {
+        setSelectedFrontendTechnologys(selectedFrontendTechnologys.filter((t) => t !== technology));
+      } else {
+        setSelectedFrontendTechnologys([...selectedFrontendTechnologys, technology]);
+      }
+    } else if (steps === 1) {
+      if (selectedBackendTechnologies.includes(technology)) {
+        setSelectedBackendTechnologies(selectedBackendTechnologies.filter((t) => t !== technology));
+      } else {
+        setSelectedBackendTechnologies([...selectedBackendTechnologies, technology]);
+      }
     }
   }
-
   function handleSearch(searchTerm: string) {
     console.log(frontendTechnologies.some(technology => technology.name.toLowerCase().includes(searchTerm.toLowerCase())));
   }
@@ -124,25 +128,27 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="font-bold ">Search technologies</h3>
               <div className="flex flex-col gap-4">
-                <div className="flex flex-row gap-2">
-                  <Input
-                    placeholder="search for a frontend technology..."
-                    value={searchTerm}
-                    onChange={(e) => (
-                      setSearchTerm(e.target.value),
-                      handleSearch(searchTerm)
-                    )}
-                    className="rounded-xl"
-                  ></Input>
-                  <button
-                    className={`p-1 bg-[red]/30 border-1 border-[red] rounded-xl hover:bg-red-100 ${searchTerm.length !== 0 ? "block" : "hidden"
-                      }`}
-                    onClick={stopCreation}
-                  >
-                    <X className="text-[red]" />
-                  </button>
+                <div className={`flex flex-col gap-2 ${steps >= 3 ? "hidden" : "block"}`}>
+                  <h3 className="font-bold ">Search technologies</h3>
+                  <div className="flex flex-row gap-2">
+                    <Input
+                      placeholder="search for a frontend technology..."
+                      value={searchTerm}
+                      onChange={(e) => (
+                        setSearchTerm(e.target.value),
+                        handleSearch(searchTerm)
+                      )}
+                      className={`rounded-xl ${steps >= 3 ? "hidden" : "block"}`}
+                    ></Input>
+                    <button
+                      className={`p-1 bg-[red]/30 border-1 border-[red] rounded-xl hover:bg-red-100 ${searchTerm.length !== 0 ? "block" : "hidden"
+                        }`}
+                      onClick={stopCreation}
+                    >
+                      <X className="text-[red]" />
+                    </button>
+                  </div>
                 </div>
                 {/*-- Technology Selection --*/}
                 <section className={`${steps === 0 ? "block" : "hidden"}`}>
@@ -187,16 +193,16 @@ export default function Home() {
                   </Button>
                   <Button
                     disabled={
-                      steps >= 5 || selectedFrontendTechnologys.length === 0
+                      steps >= 4 || selectedFrontendTechnologys.length === 0
                     }
                     className={`flex self-end bg-primary text-white rounded-xl px-5 py-2 cursor-pointer`}
                     onClick={() => {
                       setSteps(steps + 1),
-                      setConfiguration(frontendTechnologies)
-                   }
+                        setConfiguration(frontendTechnologies)
+                    }
                     }
                   >
-                    {steps <= 3 ? "next" : "generate"}
+                    {steps <= 2 ? "next" : "generate"}
                   </Button>
                 </div>
               </div>
